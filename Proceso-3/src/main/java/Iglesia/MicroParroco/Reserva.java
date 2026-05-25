@@ -1,19 +1,12 @@
 package Iglesia.MicroParroco;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-public class Alojamiento {
+public class Reserva {
     @Id
     @GeneratedValue
     private Long id;
@@ -23,16 +16,9 @@ public class Alojamiento {
     private String clienteNombre;
     private String telf;
     private String direccion;
+    private String estado = "RESERVADA";
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "reserva_id")
-    private Reserva reserva;
-
-    @OneToMany(mappedBy = "alojamiento", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private List<ServicioDetalle> servicios = new ArrayList<>();
-
-    public Alojamiento() {
+    public Reserva() {
     }
 
     public Long getId() {
@@ -91,24 +77,11 @@ public class Alojamiento {
         this.direccion = direccion;
     }
 
-    public Reserva getReserva() {
-        return reserva;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setReserva(Reserva reserva) {
-        this.reserva = reserva;
-    }
-
-    public List<ServicioDetalle> getServicios() {
-        return servicios;
-    }
-
-    public void setServicios(List<ServicioDetalle> servicios) {
-        this.servicios = servicios;
-    }
-
-    public void agregarServicio(ServicioDetalle servicio) {
-        servicio.setAlojamiento(this);
-        this.servicios.add(servicio);
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }
