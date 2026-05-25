@@ -13,15 +13,15 @@ public class Servicio {
     @Autowired
     private Repositorio rep;
     
-    public void grabar(Parroco p){
+    public void grabar(Alojamiento p){
         rep.save(p);
     }
     
-    public List<Parroco> listar(){
+    public List<Alojamiento> listar(){
         return rep.findAll();
     }
     
-    public Parroco buscar (Long id){
+    public Alojamiento buscar (Long id){
         return rep.findById(id).orElse(null);
     }
     

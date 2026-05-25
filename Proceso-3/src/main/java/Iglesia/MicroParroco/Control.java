@@ -18,17 +18,17 @@ public class Control {
     private Servicio ser;
 
     @PostMapping("/grabar")
-    public void grabar(@RequestBody Parroco p) {
+    public void grabar(@RequestBody Alojamiento p) {
         ser.grabar(p);
     }
     
     @GetMapping("/Listar")
-    public List<Parroco>Listar(){
+    public List<Alojamiento>Listar(){
         return ser.listar();
     }
     
    @GetMapping("/buscar/ {id}")
-   public Parroco buscar (@PathVariable Long id){
+   public Alojamiento buscar (@PathVariable Long id){
        return ser.buscar(id);
    }
    

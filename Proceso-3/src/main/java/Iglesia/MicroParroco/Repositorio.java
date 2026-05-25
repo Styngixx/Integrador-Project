@@ -3,8 +3,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
- * @author FRANCIS
+ * @author ...
  */
-public interface Repositorio extends JpaRepository<Parroco,Long>{
+public interface Repositorio extends JpaRepository<Alojamiento,Long>{
     
 }

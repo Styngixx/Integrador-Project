@@ -9,20 +9,22 @@ import jakarta.persistence.Id;
  * @author FRANCIS
  */
 @Entity
-public class Parroco {
+public class Alojamiento {
     @Id
     @GeneratedValue
     private Long id;
     private String nombre;
     private String telf;
+    private String direccion;
 
-    public Parroco() {
+    public Alojamiento() {
     }
 
-    public Parroco(Long id, String nombre, String telf) {
+    public Alojamiento(Long id, String nombre, String telf, String direccion) {
         this.id = id;
         this.nombre = nombre;
         this.telf = telf;
+        this.direccion = direccion; 
     }
 
     public Long getId() {
@@ -48,7 +50,10 @@ public class Parroco {
     public void setTelf(String telf) {
         this.telf = telf;
     }
-    
-    
+     public String getDireccion() {
+        return direccion;}
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
     
 }
