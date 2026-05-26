@@ -1,13 +1,13 @@
-package Iglesia.MicroParroco;
+package Proceso.FichoConsumo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MicroParrocoApplication {
+public class FichaConsumoAplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MicroParrocoApplication.class, args);
+		SpringApplication.run(FichaConsumoAplication.class, args);
 	}
 
 }
