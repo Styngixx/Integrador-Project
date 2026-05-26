@@ -1,13 +1,13 @@
-package Iglesia.MicroParroco;
+package proceso1.boletos;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MicroParrocoApplicationTests {
+class VentaBoletosApplicationTests {
 
 	@Test
 	void contextLoads() {
 	}
-
 }
+
