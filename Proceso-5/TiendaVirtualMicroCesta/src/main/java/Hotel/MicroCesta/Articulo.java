@@ -1,5 +1,6 @@
 package Hotel.MicroCesta;
 
+
 public class Articulo {
     private Long idArt;
     private String nom;
@@ -14,27 +15,10 @@ public class Articulo {
         this.pre = pre;
     }
 
-    public Long getIdArt() {
-        return idArt;
-    }
-
-    public void setIdArt(Long idArt) {
-        this.idArt = idArt;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public double getPre() {
-        return pre;
-    }
-
-    public void setPre(double pre) {
-        this.pre = pre;
-    }
+    public Long getIdArt() { return idArt; }
+    public void setIdArt(Long idArt) { this.idArt = idArt; }
+    public String getNom() { return nom; }
+    public void setNom(String nom) { this.nom = nom; }
+    public double getPre() { return pre; }
+    public void setPre(double pre) { this.pre = pre; }
 }

@@ -1,5 +1,6 @@
 package Hotel.MicroCesta;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -33,35 +34,12 @@ public class Linea {
         this.can = can;
     }
 
-    public Long getIdLin() {
-        return idLin;
-    }
-
-    public void setIdLin(Long idLin) {
-        this.idLin = idLin;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public double getPre() {
-        return pre;
-    }
-
-    public void setPre(double pre) {
-        this.pre = pre;
-    }
-
-    public int getCan() {
-        return can;
-    }
-
-    public void setCan(int can) {
-        this.can = can;
-    }
+    public Long getIdLin() { return idLin; }
+    public void setIdLin(Long idLin) { this.idLin = idLin; }
+    public String getNom() { return nom; }
+    public void setNom(String nom) { this.nom = nom; }
+    public double getPre() { return pre; }
+    public void setPre(double pre) { this.pre = pre; }
+    public int getCan() { return can; }
+    public void setCan(int can) { this.can = can; }
 }

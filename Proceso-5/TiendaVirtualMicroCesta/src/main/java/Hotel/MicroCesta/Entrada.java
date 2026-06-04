@@ -1,8 +1,9 @@
 package Hotel.MicroCesta;
 
+
 public class Entrada {
     private Long idArt;
-    private int can;
+    private int can; // cantidad
 
     public Entrada() {
     }
@@ -12,19 +13,8 @@ public class Entrada {
         this.can = can;
     }
 
-    public Long getIdArt() {
-        return idArt;
-    }
-
-    public void setIdArt(Long idArt) {
-        this.idArt = idArt;
-    }
-
-    public int getCan() {
-        return can;
-    }
-
-    public void setCan(int can) {
-        this.can = can;
-    }
+    public Long getIdArt() { return idArt; }
+    public void setIdArt(Long idArt) { this.idArt = idArt; }
+    public int getCan() { return can; }
+    public void setCan(int can) { this.can = can; }
 }

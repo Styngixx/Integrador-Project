@@ -2,32 +2,28 @@ package Hotel.MicroFactura;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
-@RequestMapping("/articulo")
+@RequestMapping("/factura")
 public class Control {
-    
+
     @Autowired
-    private Repositorio r;
+    private Servicio ser;
 
     @PostMapping("/grabar")
-    public void grabar(@RequestBody Articulo a){
-       r.save(a);
+    public Factura grabarPost(@RequestBody Factura factura) {
+        return ser.elaborarFactura(factura);
     }
-    
+
     @GetMapping("/listar")
-    public List<Articulo> listar(){
-        return r.findAll();
+    public List<Factura> listarTodas() {
+        return ser.listar();
     }
-    
+
     @GetMapping("/buscar/{id}")
-    public Articulo buscar(@PathVariable Long id){
-        return r.findById(id).orElse(null);
+    public Factura buscar(@PathVariable Long id) {
+        return ser.buscar(id);
     }
 }
