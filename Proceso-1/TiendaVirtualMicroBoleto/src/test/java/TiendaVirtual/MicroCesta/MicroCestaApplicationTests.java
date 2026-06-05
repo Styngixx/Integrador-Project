@@ -1,0 +1,13 @@
+package TiendaVirtual.MicroCesta;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class MicroCestaApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
