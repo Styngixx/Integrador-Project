@@ -11,4 +11,5 @@ public class Control {
     public void agregar(@RequestBody ServicioHotel s) { r.save(s); }
     @GetMapping("/listar")
     public List<ServicioHotel> listar() { return r.findAll(); }
+    
 }
