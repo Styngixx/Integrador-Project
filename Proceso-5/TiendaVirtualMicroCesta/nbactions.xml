@@ -10,7 +10,11 @@
         </goals>
         <properties>
             <run.jvmArguments>-noverify -XX:TieredStopAtLevel=1 </run.jvmArguments>
+<<<<<<< HEAD:Proceso-4/nbactions.xml
+            <run.mainClass>Proceso.FichaConsumo.FichaConsumoApplication</run.mainClass>
+=======
             <run.mainClass>TiendaVirtual.MicroCesta.MicroCestaApplication</run.mainClass>
+>>>>>>> 6a132a621ff3f29b159aee4fcb8f8743620ea3d0:Proceso-5/TiendaVirtualMicroCesta/nbactions.xml
             <Env.SPRING_OUTPUT_ANSI_ENABLED>always</Env.SPRING_OUTPUT_ANSI_ENABLED>
         </properties>
     </action>
