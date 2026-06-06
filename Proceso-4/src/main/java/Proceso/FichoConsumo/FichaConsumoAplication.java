@@ -8,6 +8,6 @@ public class FichaConsumoAplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FichaConsumoAplication.class, args);
-	}
+        }
 
 }
