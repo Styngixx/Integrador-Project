@@ -1,0 +1,39 @@
+COMANDOS CURL FRANCISCO BOLOGNESI
+
+REGISTRAR SERVICIO
+
+curl -X POST http://localhost:8083/servicio/agregar ^
+     -H "Content-Type: application/json" ^
+     -d "{\"nombre\": \"Desayuno Continental\", \"precio\": 25.00}"
+
+curl -X POST http://localhost:8083/servicio/agregar ^
+     -H "Content-Type: application/json" ^
+     -d "{\"nombre\": \"Spa Premium Relax\", \"precio\": 120.00}"
+
+curl -X POST http://localhost:8083/servicio/agregar ^
+     -H "Content-Type: application/json" ^
+     -d "{\"nombre\": \"Cena Gourmet Internacional\", \"precio\": 180.00}"
+
+curl -X POST http://localhost:8083/servicio/agregar ^
+     -H "Content-Type: application/json" ^
+     -d "{\"nombre\": \"Tour Privado en Yate\", \"precio\": 350.00}"
+
+
+REGISTRAR FICHA CONSUMO
+
+curl -X POST http://localhost:8082/consumo/registrar ^
+     -H "Content-Type: application/json" ^
+     -d "{\"empleado\": {\"idEmpleado\": 23223910, \"nombres\": \"Gabriel Alejandro\", \"apellidos\": \"Apac Martínez\", \"cargo\": \"Administrador de Sistemas\"}, \"alojamiento\": {\"idAlojamiento\": 1, \"numeroHabitacion\": \"204-B\", \"tipoHabitacion\": \"Suite Presidencial\"}, \"carrito\": {\"idCarrito\": 204, \"descripcionCarrito\": \"Cargos a Habitacion 204-B\"}, \"servicios\": [{\"id\": 1, \"nombre\": \"Desayuno Continental\", \"precio\": 25.00}, {\"id\": 2, \"nombre\": \"Spa Premium Relax\", \"precio\": 120.00}, {\"id\": 3, \"nombre\": \"Cena Gourmet Internacional\", \"precio\": 180.00}, {\"id\": 4, \"nombre\": \"Tour Privado en Yate\", \"precio\": 350.00}]}"
+
+
+
+Ver servicios disponibles:
+ http://localhost:8083/servicio/listar
+
+
+Ver FICHA CONSUMOS registrados:
+ http://localhost:8082/consumo/listar
+
+EUREKA SERVER DONDE DEBEN APARECER LOS MICROSERVICIOS
+
+http://localhost:8761
