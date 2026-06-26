@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registro Completo de Consumo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: linear-gradient(45deg, #0d1b2a, #1b263b, #415a77); min-height: 100vh; padding: 30px; display: flex; justify-content: center; }
+        .glass-container { background: rgba(255, 255, 255, 0.95); border-radius: 15px; padding: 30px; width: 100%; max-width: 800px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+        h1 { text-align: center; color: #1b263b; margin-bottom: 20px; font-weight: 600; }
+        .grid-form { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .full-width { grid-column: span 2; }
+        .section-title { grid-column: span 2; font-size: 18px; color: #e0e1dd; background: #1b263b; padding: 8px 15px; border-radius: 5px; margin-top: 15px; font-weight: 600; }
+        .form-group { display: flex; flex-direction: column; }
+        label { font-size: 12px; font-weight: 600; color: #333; margin-bottom: 5px; text-transform: uppercase; }
+        input { padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; background: #f4f4f4; }
+        input:focus { border-color: #415a77; background: #fff; outline: none; }
+        
+        .servicio-row { display: flex; gap: 10px; margin-bottom: 10px; }
+        .servicio-row input { flex: 1; }
+        
+        .btn-add { background: #415a77; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 13px; margin-top: 5px; }
+        .btn-submit { background: #0d1b2a; color: white; border: none; padding: 15px; border-radius: 6px; width: 100%; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        .btn-submit:hover { background: #1b263b; }
+        .alert-success { background: #d4edda; color: #155724; padding: 15px; border-radius: 6px; text-align: center; margin-bottom: 15px; grid-column: span 2; font-weight: bold;}
+    </style>
+</head>
+<body>
+
+    <div class="glass-container">
+        <h1>Generar Ficha de Consumo Completa</h1>
+        
+        <form class="grid-form" th:action="@{/grabar}" th:object="${ficha}" method="Post">
+            
+            <div th:if="${param.success}" class="alert-success">
+                ¡Ficha de consumo estructurada registrada con éxito!
+            </div>
+
+            <div class="form-group full-width">
+                <label>ID Ficha Principal</label>
+                <input type="number" th:field="*{id}" required placeholder="Ej. 3"/>
+            </div>
+
+            <div class="section-title">Datos del Empleado</div>
+            <div class="form-group"><label>DNI / ID Empleado</label><input type="number" th:field="*{empleado.idEmpleado}" required/></div>
+            <div class="form-group"><label>Cargo</label><input type="text" th:field="*{empleado.cargo}" required placeholder="Ej. Administrador de Sistemas"/></div>
+            <div class="form-group"><label>Nombres</label><input type="text" th:field="*{empleado.nombres}" required/></div>
+            <div class="form-group"><label>Apellidos</label><input type="text" th:field="*{empleado.apellidos}" required/></div>
+
+            <div class="section-title">Datos del Alojamiento</div>
+            <div class="form-group"><label>ID Alojamiento</label><input type="number" th:field="*{alojamiento.idAlojamiento}" required/></div>
+            <div class="form-group"><label>N° Habitación</label><input type="text" th:field="*{alojamiento.numeroHabitacion}" required placeholder="Ej. 204-B"/></div>
+            <div class="form-group full-width"><label>Tipo de Habitación</label><input type="text" th:field="*{alojamiento.tipoHabitacion}" required placeholder="Ej. Suite Presidencial"/></div>
+
+            <div class="section-title">Detalles del Carrito y Total</div>
+            <div class="form-group"><label>ID Carrito</label><input type="number" th:field="*{carrito.idCarrito}" required/></div>
+            <div class="form-group"><label>Descripción del Carrito</label><input type="text" th:field="*{carrito.descripcionCarrito}" required/></div>
+            <div class="form-group full-width"><label>Importe Total General (S/.)</label><input type="number" step="0.01" th:field="*{importeTotal}" required/></div>
+
+            <div class="section-title">Servicios Adquiridos (Array JSON)</div>
+            <div class="full-width" id="servicios-container">
+                </div>
+            <div class="full-width">
+                <button type="button" class="btn-add" onclick="agregarServicio()">+ Añadir otro servicio</button>
+            </div>
+
+            <button type="submit" class="btn-submit">Grabar Ficha Completa</button>
+        </form>
+    </div>
+
+    <script>
+        let contadorServicios = 0;
+        
+        function agregarServicio() {
+            const container = document.getElementById('servicios-container');
+            const row = document.createElement('div');
+            row.className = 'servicio-row';
+            
+            // Creamos los inputs con nombres como servicios[0].id, servicios[0].nombre, etc.
+            // Spring MVC automáticamente convierte esto en la lista List<ServicioAdquirido>
+            row.innerHTML = `
+                <input type="number" name="servicios[${contadorServicios}].id" placeholder="ID (ej. 1)" required style="flex: 0.5;">
+                <input type="text" name="servicios[${contadorServicios}].nombre" placeholder="Nombre (ej. Spa Premium Relax)" required style="flex: 2;">
+                <input type="number" step="0.01" name="servicios[${contadorServicios}].precio" placeholder="Precio (ej. 120)" required style="flex: 1;">
+            `;
+            container.appendChild(row);
+            contadorServicios++;
+        }
+
+        // Ejecutar al menos una vez al cargar la página para tener un servicio por defecto
+        window.onload = function() {
+            agregarServicio();
+        };
+    </script>
+</body>
+</html>
